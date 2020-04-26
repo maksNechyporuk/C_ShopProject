@@ -1,10 +1,4 @@
-﻿  CPU.cpp
-  GPU.cpp
-  HDD.cpp
-  main.cpp
+﻿  main.cpp
 D:\Example\Shop\Shop\Header.h(33,16): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
 D:\Example\Shop\Shop\Header.h(33,19): warning C4838: conversion from 'int' to 'SHORT' requires a narrowing conversion
-  Product.cpp
-  SSD.cpp
-  Generating Code...
   Shop.vcxproj -> D:\Example\Shop\Debug\Shop.exe

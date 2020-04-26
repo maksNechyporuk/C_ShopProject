@@ -1,4 +1,7 @@
 #include "Product.h"
+Product::Product()
+{
+}
 Product::Product(string Name, double Price, int Count/*, Description Descriptions[]*/)
 {
 	this->Name = Name;
@@ -10,3 +13,8 @@ Product::Product(string Name, double Price, int Count/*, Description Description
 		cout << (this->Descriptions[i].GetName()) << "-" << this->Descriptions[i].GetValue() << endl;
 	}*/
 }
+void Product::Show()
+{
+	cout << "Name:" << this->Name << endl << "Price:" << this->Price << "\n";
+}
+

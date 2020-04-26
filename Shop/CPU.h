@@ -4,17 +4,19 @@ class CPU : public Product
 {
 
 public:
+	CPU();
 	CPU(string Name,
 		double Price,
 		int Count,
 		string Connector_type,
 		int Number_of_Cores,
-		int Clock_frequency,
+		double Clock_frequency,
 		int Number_threads);
+	void Show() override;
 private:
 	string Connector_type;
 	int Number_of_Cores;
-	int Clock_frequency;
+	double Clock_frequency;
 	int Number_threads;
 };
 
