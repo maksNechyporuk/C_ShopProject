@@ -18,11 +18,11 @@ CPU::CPU(string Name,
 }
 void CPU::Show()
 {
-	//if (this->Count == 0)
-	cout << "*********************************************\n";
-	Product::Show();
-	cout << "Connector type:" << this->Connector_type << endl << "Number of cores:" << this->Number_of_Cores << "\n";
-	cout << "Clock frequency:" << this->Clock_frequency << endl << "Number threads:" << this->Number_threads << endl;
-	cout << "*********************************************\n";
-
+	if (this->Count > 0) {
+		cout << "*********************************************\n";
+		Product::Show();
+		cout << "Connector type:" << this->Connector_type << endl << "Number of cores:" << this->Number_of_Cores << "\n";
+		cout << "Clock frequency:" << this->Clock_frequency << endl << "Number threads:" << this->Number_threads << endl;
+		cout << "*********************************************\n";
+	}
 }

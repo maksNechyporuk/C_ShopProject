@@ -13,5 +13,6 @@ public:
 	Product();
 	Product(string Name, double Price, int Count/*, Description Descriptions[]*/);
 	virtual void Show();
+	void Buy();
 };
 

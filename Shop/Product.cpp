@@ -15,6 +15,14 @@ Product::Product(string Name, double Price, int Count/*, Description Description
 }
 void Product::Show()
 {
-	cout << "Name:" << this->Name << endl << "Price:" << this->Price << "\n";
+	cout << "Name:" << this->Name << endl << "Price:" << this->Price << endl << "Count:" << this->Count << endl;
+}
+
+void Product::Buy()
+{
+	if (this->Count > 0)
+	{
+		this->Count -= 1;
+	}
 }
 

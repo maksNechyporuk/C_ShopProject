@@ -6,37 +6,68 @@
 #include "Product.h"
 #include "CPU.h"
 using namespace std;
+int CPU_size = 2;
 int menu(string menus[], int size);
 template<typename T>
 int menu(T* product, int size);
+void CPUMenu();
+template<typename T>
+int GetSize(T items[]);
+template<typename T>
+void Buy(T& item);
 int main()
 {
-
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	CPUs[i].Show();
-	//} 
-	//string name = "good";
-	//Description des[] = { {Description("CPU","3,4")},{Description("GPU","8GB")} };
-	//Product PC = Product("My PC", 20000, 1, des);
-
 	CONSOLE_INFO();
 	Size_Console(45, 35);
-	string menu_items[] = { "CPU","GPU","HDD","SSD" };
-	int answer = menu(menu_items, 4);
-	switch (answer)
-	{
-	case 0: {
-		CPU* CPUs = new CPU[2]{ CPU("AMD Ryzen 5",5600,2,"Socket AM4",6,3.6,12),
-			CPU("Intel Core i5-8600K",9760,5,"Socket 1151",6,3.6,6) };
-		menu(CPUs, 2);
-	}
-	case 1: cout << "2" << endl; break;
-	case 2: cout << "3" << endl; break;
-	case 3: cout << "4" << endl; return 0;
-	}
+	bool work = true;
+	do {
+		string menu_items[] = { "CPU","GPU","HDD","SSD","EXIT" };
+		int answer = menu(menu_items, 5);
+		switch (answer)
+		{
+		case 0: {
+			CPUMenu();
+		}
+		case 1: cout << "2" << endl; break;
+		case 2: cout << "3" << endl; break;
+		case 3: cout << "4" << endl; break;
+		case 4: work = false; break;
+
+		}
+	} while (work);
 	system("pause");
 	return 0;
+}
+template<typename T>
+void Buy(T& item) {
+	item.Buy();
+}
+template<typename T>
+int GetSize(T items[]) {
+	int size = (sizeof((*items))) / (sizeof(items[0]));
+	return size;
+}
+void CPUMenu()
+{
+	CPU* CPUs = new CPU[CPU_size]{ CPU("AMD Ryzen 5",5600,2,"Socket AM4",6,3.6,12),
+			CPU("Intel Core i5-8600K",9760,5,"Socket 1151",6,3.6,6) };
+	bool work = true;
+	do {
+		string menu_items[] = { "Buy","Create","BACK" };
+		int answer = menu(menu_items, 3);
+		switch (answer)
+		{
+		case 0: {
+			int key = menu(CPUs, CPU_size);
+			Buy(CPUs[key]);
+		}
+		case 1: cout << "2" << endl; break;
+		case 3: cout << "4" << endl; break;
+		case 2: work = false; break;
+
+		}
+	} while (work);
+
 }
 template<typename T>
 int menu(T* product, int size)
