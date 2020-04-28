@@ -1,4 +1,7 @@
 #include "CPU.h"
+#include <iostream>
+#include <string>
+
 CPU::CPU()
 {
 }
@@ -11,8 +14,9 @@ CPU::CPU(string Name,
 	int Number_threads)
 	:Product(Name, Price, Count)
 {
-	this->Clock_frequency = Clock_frequency;
 	this->Connector_type = Connector_type;
+
+	this->Clock_frequency = Clock_frequency;
 	this->Number_of_Cores = Number_of_Cores;
 	this->Number_threads = Number_threads;
 }
@@ -25,4 +29,21 @@ void CPU::Show()
 		cout << "Clock frequency:" << this->Clock_frequency << endl << "Number threads:" << this->Number_threads << endl;
 		cout << "*********************************************\n";
 	}
+}
+
+void CPU::Create()
+{
+	Product::Create();
+	cout << "Connector type:";
+	string type;
+	cin.get();
+	getline(cin, type);
+	cout << "Number of Cores:";
+	cin >> this->Number_of_Cores;
+	cout << "Clock frequency:";
+	cin >> this->Clock_frequency;
+	cout << "Number threads:";
+	cin >> this->Number_threads;
+	this->Connector_type = type;
+	Show();
 }

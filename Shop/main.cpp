@@ -15,6 +15,10 @@ template<typename T>
 int GetSize(T items[]);
 template<typename T>
 void Buy(T& item);
+template<typename T1>
+void Create(T1*& items, int& size);
+CPU* CPUs = new CPU[CPU_size]{ CPU("AMD Ryzen 5",5600,2,"Socket AM4",6,3.6,12),
+			CPU("Intel Core i5-8600K",9760,5,"Socket 1151",6,3.6,6) };
 int main()
 {
 	CONSOLE_INFO();
@@ -27,6 +31,7 @@ int main()
 		{
 		case 0: {
 			CPUMenu();
+			break;
 		}
 		case 1: cout << "2" << endl; break;
 		case 2: cout << "3" << endl; break;
@@ -37,6 +42,23 @@ int main()
 	} while (work);
 	system("pause");
 	return 0;
+}
+
+template<typename T1>
+void Create(T1*& items, int& size)
+{
+	T1* new_items = new T1[size + 1];
+	for (int i = 0; i < size; i++)
+	{
+		(new_items[i]) = (items[i]);
+	}
+
+	T1 new_item;
+	new_item.Create();
+	new_items[size] = new_item;
+	delete[] items;
+	items = new_items;
+	size++;
 }
 template<typename T>
 void Buy(T& item) {
@@ -49,8 +71,6 @@ int GetSize(T items[]) {
 }
 void CPUMenu()
 {
-	CPU* CPUs = new CPU[CPU_size]{ CPU("AMD Ryzen 5",5600,2,"Socket AM4",6,3.6,12),
-			CPU("Intel Core i5-8600K",9760,5,"Socket 1151",6,3.6,6) };
 	bool work = true;
 	do {
 		string menu_items[] = { "Buy","Create","BACK" };
@@ -60,14 +80,18 @@ void CPUMenu()
 		case 0: {
 			int key = menu(CPUs, CPU_size);
 			Buy(CPUs[key]);
+			break;
+
 		}
-		case 1: cout << "2" << endl; break;
+		case 1: {
+			Create(CPUs, CPU_size);
+			system("pause");
+			break;
+		}
 		case 3: cout << "4" << endl; break;
 		case 2: work = false; break;
-
 		}
 	} while (work);
-
 }
 template<typename T>
 int menu(T* product, int size)

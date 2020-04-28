@@ -26,3 +26,13 @@ void Product::Buy()
 	}
 }
 
+void Product::Create()
+{
+	cout << "Name:";
+	getline(std::cin, this->Name);
+	cout << "Price:";
+	cin >> this->Price;
+	cout << "Count:";
+	cin >> this->Count;
+}
+

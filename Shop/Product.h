@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include<iostream>
-#include "Description.h"
 using namespace std;
 class Product
 {
@@ -14,5 +13,6 @@ public:
 	Product(string Name, double Price, int Count/*, Description Descriptions[]*/);
 	virtual void Show();
 	void Buy();
+	virtual void Create();
 };
 

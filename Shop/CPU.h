@@ -13,7 +13,8 @@ public:
 		double Clock_frequency,
 		int Number_threads);
 	void Show() override;
-private:
+	void Create() override;
+protected:
 	string Connector_type;
 	int Number_of_Cores;
 	double Clock_frequency;
