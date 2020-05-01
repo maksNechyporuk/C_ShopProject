@@ -5,7 +5,8 @@ using namespace std;
 class Product
 {
 protected:
-	string Name;
+	char* Name;
+	//string Name;
 	double Price;
 	int Count;
 public:
@@ -14,5 +15,8 @@ public:
 	virtual void Show();
 	void Buy();
 	virtual void Create();
+	virtual void write(ostream& os);
+	virtual void read(istream& in);
+
 };
 

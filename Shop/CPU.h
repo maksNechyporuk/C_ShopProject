@@ -14,6 +14,9 @@ public:
 		int Number_threads);
 	void Show() override;
 	void Create() override;
+	void write(ostream& os) override;
+	void read(istream& in) override;
+
 protected:
 	string Connector_type;
 	int Number_of_Cores;

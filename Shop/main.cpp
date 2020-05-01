@@ -1,13 +1,16 @@
 ﻿#include <iostream>
 #include <conio.h>
+#include<fstream>
 #include <windows.h>
 #include "Header.h"
 #include "Description.h"
 #include "Product.h"
 #include "CPU.h"
 using namespace std;
-int CPU_size = 2;
+int CPU_size = 0;
 int menu(string menus[], int size);
+void EndWork();
+void StartWork();
 template<typename T>
 int menu(T* product, int size);
 void CPUMenu();
@@ -17,13 +20,16 @@ template<typename T>
 void Buy(T& item);
 template<typename T1>
 void Create(T1*& items, int& size);
-CPU* CPUs = new CPU[CPU_size]{ CPU("AMD Ryzen 5",5600,2,"Socket AM4",6,3.6,12),
-			CPU("Intel Core i5-8600K",9760,5,"Socket 1151",6,3.6,6) };
+template<typename T>
+void ReadItem(T*& items, T*& item, int& size);
+CPU* CPUs = new CPU[CPU_size];/*{ CPU("Intel Core i5-8600K", 9760, 5, "Socket 1151", 6, 3.6, 6),
+ CPU("AMD Ryzen 5", 5600, 2, "Socket AM4", 6, 3.6, 12) };*/
 int main()
 {
 	CONSOLE_INFO();
 	Size_Console(45, 35);
-	bool work = true;
+	StartWork();
+	/*bool work = true;
 	do {
 		string menu_items[] = { "CPU","GPU","HDD","SSD","EXIT" };
 		int answer = menu(menu_items, 5);
@@ -40,10 +46,71 @@ int main()
 
 		}
 	} while (work);
+
+	*///EndWork();
 	system("pause");
+
 	return 0;
 }
+template<typename T>
+void ReadItem(T*& items, T*& item, int& size)
+{
+	T* new_items = new T[size + 1];
+	for (int i = 0; i < size; i++)
+	{
+		(new_items[i]) = (items[i]);
+	}
 
+	new_items[size] = item;
+	if (size != 0)
+		delete[] items;
+	items = new_items;
+	size++;
+}
+void StartWork()
+{
+	ifstream file;
+	file.open("CPU.txt");
+	if (!file.is_open())
+	{
+		cout << "error\n";
+	}
+	else
+	{
+		CPU new_cpu;
+		while (file.read((char*)&new_cpu, sizeof(CPU)))
+		{
+			ifstream file1;
+			file1.open("CPU.txt");
+			CPU new_cpuu;
+			new_cpuu.read(file1);
+			new_cpuu.Show();
+			//ReadItem(CPUs, new_cpu, CPU_size);
+		}
+	}
+	file.close();
+}
+
+void EndWork() {
+	ofstream file("CPU.txt", ios::binary | ios::app);
+	for (int i = 0; i < CPU_size; i++)
+		CPUs[i].write(file);
+	/*for (int i = 0; i < CPU_size; i++)
+	{
+		ofstream file;
+		file.open("CPU.txt", ofstream::app);
+		if (!file.is_open())
+		{
+			cout << "error\n";
+		}
+		else
+		{
+			file.write((char*)&CPUs[i], sizeof(CPU));
+		}
+		file.close();
+	*/
+
+}
 template<typename T1>
 void Create(T1*& items, int& size)
 {
@@ -52,7 +119,6 @@ void Create(T1*& items, int& size)
 	{
 		(new_items[i]) = (items[i]);
 	}
-
 	T1 new_item;
 	new_item.Create();
 	new_items[size] = new_item;
@@ -85,6 +151,7 @@ void CPUMenu()
 		}
 		case 1: {
 			Create(CPUs, CPU_size);
+			CPU_size++;
 			system("pause");
 			break;
 		}

@@ -1,0 +1,20 @@
+{
+{
+	"Name"="AMD Ryzen 5",
+	"Price":5600,
+	"Count":2,
+	"Connector_type":"Socket AM4",
+	"Number_of_Cores":6,
+	"Clock_frequency":3.6,
+	"Number_threads":12
+},
+{
+	"Name"="Intel Core i5-8600K",
+	"Price":9760,
+	"Count":5,
+	"Connector_type":"Socket 1151",
+	"Number_of_Cores":6,
+	"Clock_frequency":3.6,
+	"Number_threads":6
+}
+}
